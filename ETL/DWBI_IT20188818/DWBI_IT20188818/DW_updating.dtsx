@@ -1,0 +1,980 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="5/14/2022 3:48:17 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="LAPTOP-5CADPCEG"
+  DTS:CreatorName="LAPTOP-5CADPCEG\sudara"
+  DTS:DTSID="{698E31C0-AD7B-4EA4-85A3-26F8C0B2D351}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.170"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="DW_updating"
+  DTS:PackageType="5"
+  DTS:VersionBuild="8"
+  DTS:VersionGUID="{E687CDE8-CAC7-4C0B-8909-21D9553BE94C}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Update FactHotel  accm_txn_complete_time"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{D82EEFFF-6553-438C-93C7-B070D130F495}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Update FactHotel  accm_txn_complete_time"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Update FactHotel  accm_txn_complete_time\OLE DB Command"
+              componentClassID="Microsoft.OLEDBCommand"
+              contactInfo="OLE DB Command;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+              description="Runs an SQL statement for each row in a data flow. For example, call a 'new employee setup' stored procedure for each row in the 'new employees' table. Note: running an SQL statement for each row of a large data flow may take a long time."
+              name="OLE DB Command"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">update [dbo].[FactHotel]
+set [accm_txn_complete_time] = ?
+
+where [h_id] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Update FactHotel  accm_txn_complete_time\OLE DB Command.Connections[OleDbConnection]"
+                  connectionManagerID="{C5936503-E908-4D69-AC05-8462EDCFBD7C}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[LAPTOP-5CADPCEG.IT20188818_DW]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Update FactHotel  accm_txn_complete_time\OLE DB Command.Inputs[OLE DB Command Input]"
+                  errorOrTruncationOperation="Command Execution"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Command Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Update FactHotel  accm_txn_complete_time\OLE DB Command.Inputs[OLE DB Command Input].Columns[h_id]"
+                      cachedDataType="i2"
+                      cachedName="h_id"
+                      externalMetadataColumnId="Package\Update FactHotel  accm_txn_complete_time\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                      lineageId="Package\Update FactHotel  accm_txn_complete_time\OLE DB Source.Outputs[OLE DB Source Output].Columns[h_id]" />
+                    <inputColumn
+                      refId="Package\Update FactHotel  accm_txn_complete_time\OLE DB Command.Inputs[OLE DB Command Input].Columns[accm_txn_complete_time]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="accm_txn_complete_time"
+                      externalMetadataColumnId="Package\Update FactHotel  accm_txn_complete_time\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      lineageId="Package\Update FactHotel  accm_txn_complete_time\OLE DB Source.Outputs[OLE DB Source Output].Columns[accm_txn_complete_time]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Update FactHotel  accm_txn_complete_time\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      dataType="dbTimeStamp"
+                      name="Param_0">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Update FactHotel  accm_txn_complete_time\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                      dataType="i2"
+                      name="Param_1">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">81</property>
+                      </properties>
+                    </externalMetadataColumn>
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Update FactHotel  accm_txn_complete_time\OLE DB Command.Outputs[OLE DB Command Output]"
+                  exclusionGroup="1"
+                  name="OLE DB Command Output"
+                  synchronousInputId="Package\Update FactHotel  accm_txn_complete_time\OLE DB Command.Inputs[OLE DB Command Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Update FactHotel  accm_txn_complete_time\OLE DB Command.Outputs[OLE DB Command Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Command Error Output"
+                  synchronousInputId="Package\Update FactHotel  accm_txn_complete_time\OLE DB Command.Inputs[OLE DB Command Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Update FactHotel  accm_txn_complete_time\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Update FactHotel  accm_txn_complete_time\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Update FactHotel  accm_txn_complete_time\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Update FactHotel  accm_txn_complete_time\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Update FactHotel  accm_txn_complete_time\OLE DB Source"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLE DB Source"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[accm_txn_create_time]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Update FactHotel  accm_txn_complete_time\OLE DB Source.Connections[OleDbConnection]"
+                  connectionManagerID="{802662E9-CA59-41F9-A5CB-5BE9A201EAF3}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[LAPTOP-5CADPCEG.IT20188818_stagingDB]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Update FactHotel  accm_txn_complete_time\OLE DB Source.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Update FactHotel  accm_txn_complete_time\OLE DB Source.Outputs[OLE DB Source Output].Columns[h_id]"
+                      dataType="i2"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Update FactHotel  accm_txn_complete_time\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[h_id]"
+                      lineageId="Package\Update FactHotel  accm_txn_complete_time\OLE DB Source.Outputs[OLE DB Source Output].Columns[h_id]"
+                      name="h_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Update FactHotel  accm_txn_complete_time\OLE DB Source.Outputs[OLE DB Source Output].Columns[accm_txn_complete_time]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Update FactHotel  accm_txn_complete_time\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[accm_txn_complete_time]"
+                      lineageId="Package\Update FactHotel  accm_txn_complete_time\OLE DB Source.Outputs[OLE DB Source Output].Columns[accm_txn_complete_time]"
+                      name="accm_txn_complete_time"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Update FactHotel  accm_txn_complete_time\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[h_id]"
+                      dataType="i2"
+                      name="h_id" />
+                    <externalMetadataColumn
+                      refId="Package\Update FactHotel  accm_txn_complete_time\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[accm_txn_complete_time]"
+                      dataType="dbTimeStamp"
+                      name="accm_txn_complete_time" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Update FactHotel  accm_txn_complete_time\OLE DB Source.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Update FactHotel  accm_txn_complete_time\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[h_id]"
+                      dataType="i2"
+                      lineageId="Package\Update FactHotel  accm_txn_complete_time\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[h_id]"
+                      name="h_id" />
+                    <outputColumn
+                      refId="Package\Update FactHotel  accm_txn_complete_time\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[accm_txn_complete_time]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Update FactHotel  accm_txn_complete_time\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[accm_txn_complete_time]"
+                      name="accm_txn_complete_time" />
+                    <outputColumn
+                      refId="Package\Update FactHotel  accm_txn_complete_time\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Update FactHotel  accm_txn_complete_time\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Update FactHotel  accm_txn_complete_time\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Update FactHotel  accm_txn_complete_time\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Update FactHotel  accm_txn_complete_time.Paths[OLE DB Source Output]"
+              endId="Package\Update FactHotel  accm_txn_complete_time\OLE DB Command.Inputs[OLE DB Command Input]"
+              name="OLE DB Source Output"
+              startId="Package\Update FactHotel  accm_txn_complete_time\OLE DB Source.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Update FactHotel txn_process_time_hours"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{F22F219C-9258-46E5-AF12-200DE9931962}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Update FactHotel txn_process_time_hours"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Update FactHotel txn_process_time_hours\OLE DB Command"
+              componentClassID="Microsoft.OLEDBCommand"
+              contactInfo="OLE DB Command;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+              description="Runs an SQL statement for each row in a data flow. For example, call a 'new employee setup' stored procedure for each row in the 'new employees' table. Note: running an SQL statement for each row of a large data flow may take a long time."
+              name="OLE DB Command"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">UPDATE [dbo].[FactHotel] 
+SET [txn_process_time_hours] = DATEDIFF (Hh, accm_txn_create_time, accm_txn_complete_time)
+WHERE [h_id] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Update FactHotel txn_process_time_hours\OLE DB Command.Connections[OleDbConnection]"
+                  connectionManagerID="{C5936503-E908-4D69-AC05-8462EDCFBD7C}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[LAPTOP-5CADPCEG.IT20188818_DW]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Update FactHotel txn_process_time_hours\OLE DB Command.Inputs[OLE DB Command Input]"
+                  errorOrTruncationOperation="Command Execution"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Command Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Update FactHotel txn_process_time_hours\OLE DB Command.Inputs[OLE DB Command Input].Columns[h_id]"
+                      cachedDataType="i2"
+                      cachedName="h_id"
+                      externalMetadataColumnId="Package\Update FactHotel txn_process_time_hours\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      lineageId="Package\Update FactHotel txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Output].Columns[h_id]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Update FactHotel txn_process_time_hours\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      dataType="i2"
+                      name="Param_0">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">81</property>
+                      </properties>
+                    </externalMetadataColumn>
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Update FactHotel txn_process_time_hours\OLE DB Command.Outputs[OLE DB Command Output]"
+                  exclusionGroup="1"
+                  name="OLE DB Command Output"
+                  synchronousInputId="Package\Update FactHotel txn_process_time_hours\OLE DB Command.Inputs[OLE DB Command Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Update FactHotel txn_process_time_hours\OLE DB Command.Outputs[OLE DB Command Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Command Error Output"
+                  synchronousInputId="Package\Update FactHotel txn_process_time_hours\OLE DB Command.Inputs[OLE DB Command Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Update FactHotel txn_process_time_hours\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Update FactHotel txn_process_time_hours\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Update FactHotel txn_process_time_hours\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Update FactHotel txn_process_time_hours\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Update FactHotel txn_process_time_hours\OLE DB Source"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLE DB Source"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[FactHotel]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Update FactHotel txn_process_time_hours\OLE DB Source.Connections[OleDbConnection]"
+                  connectionManagerID="{C5936503-E908-4D69-AC05-8462EDCFBD7C}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[LAPTOP-5CADPCEG.IT20188818_DW]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Update FactHotel txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Update FactHotel txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Output].Columns[h_id]"
+                      dataType="i2"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Update FactHotel txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[h_id]"
+                      lineageId="Package\Update FactHotel txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Output].Columns[h_id]"
+                      name="h_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Update FactHotel txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Output].Columns[hotel_name]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Update FactHotel txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[hotel_name]"
+                      length="500"
+                      lineageId="Package\Update FactHotel txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Output].Columns[hotel_name]"
+                      name="hotel_name"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Update FactHotel txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Output].Columns[dateUpdated]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Update FactHotel txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[dateUpdated]"
+                      lineageId="Package\Update FactHotel txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Output].Columns[dateUpdated]"
+                      name="dateUpdated"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Update FactHotel txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Output].Columns[Price_per_night]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Update FactHotel txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Price_per_night]"
+                      lineageId="Package\Update FactHotel txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Output].Columns[Price_per_night]"
+                      name="Price_per_night"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Update FactHotel txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Output].Columns[no_of_reserved_rooms]"
+                      dataType="ui1"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Update FactHotel txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[no_of_reserved_rooms]"
+                      lineageId="Package\Update FactHotel txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Output].Columns[no_of_reserved_rooms]"
+                      name="no_of_reserved_rooms"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Update FactHotel txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Output].Columns[totalAmount]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Update FactHotel txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[totalAmount]"
+                      lineageId="Package\Update FactHotel txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Output].Columns[totalAmount]"
+                      name="totalAmount"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Update FactHotel txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Output].Columns[dateAdded]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Update FactHotel txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[dateAdded]"
+                      lineageId="Package\Update FactHotel txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Output].Columns[dateAdded]"
+                      name="dateAdded"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Update FactHotel txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Output].Columns[HotelCategoryKey]"
+                      dataType="i2"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Update FactHotel txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[HotelCategoryKey]"
+                      lineageId="Package\Update FactHotel txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Output].Columns[HotelCategoryKey]"
+                      name="HotelCategoryKey"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Update FactHotel txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Output].Columns[LocationKey]"
+                      dataType="i2"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Update FactHotel txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[LocationKey]"
+                      lineageId="Package\Update FactHotel txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Output].Columns[LocationKey]"
+                      name="LocationKey"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Update FactHotel txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Output].Columns[ReviewKey]"
+                      dataType="i2"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Update FactHotel txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ReviewKey]"
+                      lineageId="Package\Update FactHotel txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Output].Columns[ReviewKey]"
+                      name="ReviewKey"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Update FactHotel txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Output].Columns[UserKey]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Update FactHotel txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[UserKey]"
+                      lineageId="Package\Update FactHotel txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Output].Columns[UserKey]"
+                      name="UserKey"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Update FactHotel txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Output].Columns[InsertDate]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Update FactHotel txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[InsertDate]"
+                      lineageId="Package\Update FactHotel txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Output].Columns[InsertDate]"
+                      name="InsertDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Update FactHotel txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Output].Columns[ModifiedDate]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Update FactHotel txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ModifiedDate]"
+                      lineageId="Package\Update FactHotel txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Output].Columns[ModifiedDate]"
+                      name="ModifiedDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Update FactHotel txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Output].Columns[accm_txn_create_time]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Update FactHotel txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[accm_txn_create_time]"
+                      lineageId="Package\Update FactHotel txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Output].Columns[accm_txn_create_time]"
+                      name="accm_txn_create_time"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Update FactHotel txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Output].Columns[accm_txn_complete_time]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Update FactHotel txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[accm_txn_complete_time]"
+                      lineageId="Package\Update FactHotel txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Output].Columns[accm_txn_complete_time]"
+                      name="accm_txn_complete_time"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Update FactHotel txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Output].Columns[txn_process_time_hours]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Update FactHotel txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[txn_process_time_hours]"
+                      lineageId="Package\Update FactHotel txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Output].Columns[txn_process_time_hours]"
+                      name="txn_process_time_hours"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Update FactHotel txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[h_id]"
+                      dataType="i2"
+                      name="h_id" />
+                    <externalMetadataColumn
+                      refId="Package\Update FactHotel txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[hotel_name]"
+                      dataType="wstr"
+                      length="500"
+                      name="hotel_name" />
+                    <externalMetadataColumn
+                      refId="Package\Update FactHotel txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[dateUpdated]"
+                      dataType="dbTimeStamp"
+                      name="dateUpdated" />
+                    <externalMetadataColumn
+                      refId="Package\Update FactHotel txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Price_per_night]"
+                      dataType="r8"
+                      name="Price_per_night" />
+                    <externalMetadataColumn
+                      refId="Package\Update FactHotel txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[no_of_reserved_rooms]"
+                      dataType="ui1"
+                      name="no_of_reserved_rooms" />
+                    <externalMetadataColumn
+                      refId="Package\Update FactHotel txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[totalAmount]"
+                      dataType="r8"
+                      name="totalAmount" />
+                    <externalMetadataColumn
+                      refId="Package\Update FactHotel txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[dateAdded]"
+                      dataType="i4"
+                      name="dateAdded" />
+                    <externalMetadataColumn
+                      refId="Package\Update FactHotel txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[HotelCategoryKey]"
+                      dataType="i2"
+                      name="HotelCategoryKey" />
+                    <externalMetadataColumn
+                      refId="Package\Update FactHotel txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[LocationKey]"
+                      dataType="i2"
+                      name="LocationKey" />
+                    <externalMetadataColumn
+                      refId="Package\Update FactHotel txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ReviewKey]"
+                      dataType="i2"
+                      name="ReviewKey" />
+                    <externalMetadataColumn
+                      refId="Package\Update FactHotel txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[UserKey]"
+                      dataType="i4"
+                      name="UserKey" />
+                    <externalMetadataColumn
+                      refId="Package\Update FactHotel txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[InsertDate]"
+                      dataType="dbTimeStamp"
+                      name="InsertDate" />
+                    <externalMetadataColumn
+                      refId="Package\Update FactHotel txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ModifiedDate]"
+                      dataType="dbTimeStamp"
+                      name="ModifiedDate" />
+                    <externalMetadataColumn
+                      refId="Package\Update FactHotel txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[accm_txn_create_time]"
+                      dataType="dbTimeStamp"
+                      name="accm_txn_create_time" />
+                    <externalMetadataColumn
+                      refId="Package\Update FactHotel txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[accm_txn_complete_time]"
+                      dataType="dbTimeStamp"
+                      name="accm_txn_complete_time" />
+                    <externalMetadataColumn
+                      refId="Package\Update FactHotel txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[txn_process_time_hours]"
+                      dataType="i4"
+                      name="txn_process_time_hours" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Update FactHotel txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Update FactHotel txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[h_id]"
+                      dataType="i2"
+                      lineageId="Package\Update FactHotel txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[h_id]"
+                      name="h_id" />
+                    <outputColumn
+                      refId="Package\Update FactHotel txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[hotel_name]"
+                      dataType="wstr"
+                      length="500"
+                      lineageId="Package\Update FactHotel txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[hotel_name]"
+                      name="hotel_name" />
+                    <outputColumn
+                      refId="Package\Update FactHotel txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[dateUpdated]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Update FactHotel txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[dateUpdated]"
+                      name="dateUpdated" />
+                    <outputColumn
+                      refId="Package\Update FactHotel txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Price_per_night]"
+                      dataType="r8"
+                      lineageId="Package\Update FactHotel txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Price_per_night]"
+                      name="Price_per_night" />
+                    <outputColumn
+                      refId="Package\Update FactHotel txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[no_of_reserved_rooms]"
+                      dataType="ui1"
+                      lineageId="Package\Update FactHotel txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[no_of_reserved_rooms]"
+                      name="no_of_reserved_rooms" />
+                    <outputColumn
+                      refId="Package\Update FactHotel txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[totalAmount]"
+                      dataType="r8"
+                      lineageId="Package\Update FactHotel txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[totalAmount]"
+                      name="totalAmount" />
+                    <outputColumn
+                      refId="Package\Update FactHotel txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[dateAdded]"
+                      dataType="i4"
+                      lineageId="Package\Update FactHotel txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[dateAdded]"
+                      name="dateAdded" />
+                    <outputColumn
+                      refId="Package\Update FactHotel txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[HotelCategoryKey]"
+                      dataType="i2"
+                      lineageId="Package\Update FactHotel txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[HotelCategoryKey]"
+                      name="HotelCategoryKey" />
+                    <outputColumn
+                      refId="Package\Update FactHotel txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[LocationKey]"
+                      dataType="i2"
+                      lineageId="Package\Update FactHotel txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[LocationKey]"
+                      name="LocationKey" />
+                    <outputColumn
+                      refId="Package\Update FactHotel txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ReviewKey]"
+                      dataType="i2"
+                      lineageId="Package\Update FactHotel txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ReviewKey]"
+                      name="ReviewKey" />
+                    <outputColumn
+                      refId="Package\Update FactHotel txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[UserKey]"
+                      dataType="i4"
+                      lineageId="Package\Update FactHotel txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[UserKey]"
+                      name="UserKey" />
+                    <outputColumn
+                      refId="Package\Update FactHotel txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[InsertDate]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Update FactHotel txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[InsertDate]"
+                      name="InsertDate" />
+                    <outputColumn
+                      refId="Package\Update FactHotel txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ModifiedDate]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Update FactHotel txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ModifiedDate]"
+                      name="ModifiedDate" />
+                    <outputColumn
+                      refId="Package\Update FactHotel txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[accm_txn_create_time]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Update FactHotel txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[accm_txn_create_time]"
+                      name="accm_txn_create_time" />
+                    <outputColumn
+                      refId="Package\Update FactHotel txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[accm_txn_complete_time]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Update FactHotel txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[accm_txn_complete_time]"
+                      name="accm_txn_complete_time" />
+                    <outputColumn
+                      refId="Package\Update FactHotel txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[txn_process_time_hours]"
+                      dataType="i4"
+                      lineageId="Package\Update FactHotel txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[txn_process_time_hours]"
+                      name="txn_process_time_hours" />
+                    <outputColumn
+                      refId="Package\Update FactHotel txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Update FactHotel txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Update FactHotel txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Update FactHotel txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Update FactHotel txn_process_time_hours.Paths[OLE DB Source Output]"
+              endId="Package\Update FactHotel txn_process_time_hours\OLE DB Command.Inputs[OLE DB Command Input]"
+              name="OLE DB Source Output"
+              startId="Package\Update FactHotel txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{636DE89D-ACEC-4CBB-AB40-684F38FFEA2C}"
+      DTS:From="Package\Update FactHotel  accm_txn_complete_time"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Update FactHotel txn_process_time_hours" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="286.4,41.6"
+          Id="Package\Update FactHotel  accm_txn_complete_time"
+          TopLeft="162.142859904134,82.5882364523865" />
+        <NodeLayout
+          Size="277.6,41.6"
+          Id="Package\Update FactHotel txn_process_time_hours"
+          TopLeft="188.571431782781,211.058826489432" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="305.342859904134,124.188236452386">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="22.028571878647,86.8705900370455"
+              Start="0,0"
+              End="22.028571878647,79.3705900370455">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,39.4352950185228" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,39.4352950185228"
+                    Point2="0,43.4352950185228"
+                    Point3="4,43.4352950185228" />
+                  <mssgle:LineSegment
+                    End="18.028571878647,43.4352950185228" />
+                  <mssgle:CubicBezierSegment
+                    Point1="18.028571878647,43.4352950185228"
+                    Point2="22.028571878647,43.4352950185228"
+                    Point3="22.028571878647,47.4352950185228" />
+                  <mssgle:LineSegment
+                    End="22.028571878647,79.3705900370455" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Update FactHotel  accm_txn_complete_time">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="149.6,41.6"
+          Id="Package\Update FactHotel  accm_txn_complete_time\OLE DB Source"
+          TopLeft="165.714288536383,74.9411775216099" />
+        <NodeLayout
+          Size="164.8,41.6"
+          Id="Package\Update FactHotel  accm_txn_complete_time\OLE DB Command"
+          TopLeft="323.571434081817,202.647061665578" />
+        <EdgeLayout
+          Id="Package\Update FactHotel  accm_txn_complete_time.Paths[OLE DB Source Output]"
+          TopLeft="240.514288536383,116.54117752161">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="165.457145545434,86.105884143968"
+              Start="0,0"
+              End="165.457145545434,78.605884143968">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,39.052942071984" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,39.052942071984"
+                    Point2="0,43.052942071984"
+                    Point3="4,43.052942071984" />
+                  <mssgle:LineSegment
+                    End="161.457145545434,43.052942071984" />
+                  <mssgle:CubicBezierSegment
+                    Point1="161.457145545434,43.052942071984"
+                    Point2="165.457145545434,43.052942071984"
+                    Point3="165.457145545434,47.052942071984" />
+                  <mssgle:LineSegment
+                    End="165.457145545434,78.605884143968" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Update FactHotel  accm_txn_complete_time\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Update FactHotel txn_process_time_hours">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="164.8,41.6"
+          Id="Package\Update FactHotel txn_process_time_hours\OLE DB Command"
+          TopLeft="358,224" />
+        <NodeLayout
+          Size="149.6,41.6"
+          Id="Package\Update FactHotel txn_process_time_hours\OLE DB Source"
+          TopLeft="215,61" />
+        <EdgeLayout
+          Id="Package\Update FactHotel txn_process_time_hours.Paths[OLE DB Source Output]"
+          TopLeft="289.8,102.6">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="150.6,121.4"
+              Start="0,0"
+              End="150.6,113.9">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,56.7" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,56.7"
+                    Point2="0,60.7"
+                    Point3="4,60.7" />
+                  <mssgle:LineSegment
+                    End="146.6,60.7" />
+                  <mssgle:CubicBezierSegment
+                    Point1="146.6,60.7"
+                    Point2="150.6,60.7"
+                    Point3="150.6,64.7" />
+                  <mssgle:LineSegment
+                    End="150.6,113.9" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Update FactHotel txn_process_time_hours\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
